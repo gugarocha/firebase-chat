@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/auth_page.dart';
+import 'pages/auth_or_app_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
-      home: const AuthPage(),
+      home: const AuthOrAppPage(),
     );
   }
 }

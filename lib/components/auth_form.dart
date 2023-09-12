@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../models/auth_form_data.dart';
+import '../core/models/auth_form_data.dart';
 import 'user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
@@ -30,21 +30,8 @@ class _AuthFormState extends State<AuthForm> {
     authFormData.image = image;
   }
 
-  void showError(String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        backgroundColor: Theme.of(context).colorScheme.error,
-      ),
-    );
-  }
-
   void submit() {
     final isValid = formKey.currentState?.validate() ?? false;
-
-    if (authFormData.isSignup && authFormData.image == null) {
-      return showError('Imagem não selecionada');
-    }
 
     if (!isValid) return;
 
