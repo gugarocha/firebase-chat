@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "707921401983",
+    "project_id": "chat-cod3r-7a0ea",
+    "storage_bucket": "chat-cod3r-7a0ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707921401983:android:efa47ad0318b9a6fe8874a",
+        "android_client_info": {
+          "package_name": "br.com.gugarocha.chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk-sYAkNQalMCgTehQ71Hg1H-lyHlEiT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
