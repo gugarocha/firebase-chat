@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -21,10 +22,10 @@ class AuthFirebaseService implements AuthService {
     }
   });
 
-  static ChatUser _toChatUser(User user, [String? imageUrl]) {
+  static ChatUser _toChatUser(User user, [String? name, String? imageUrl]) {
     return ChatUser(
       id: user.uid,
-      name: user.displayName ?? user.email!.split('@')[0],
+      name: name ?? user.displayName ?? user.email!.split('@')[0],
       email: user.email!,
       imageUrl: imageUrl ?? user.photoURL ?? 'assets/images/avatar.png',
     );
@@ -56,27 +57,35 @@ class AuthFirebaseService implements AuthService {
     String password,
     File? image,
   ) async {
-    final auth = FirebaseAuth.instance;
+    final signup = await Firebase.initializeApp(
+      name: 'userSignup',
+      options: Firebase.app().options,
+    );
+    final auth = FirebaseAuth.instanceFor(app: signup);
 
     final UserCredential credential = await auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
 
-    if (credential.user == null) return;
+    if (credential.user != null) {
+      final imageName = '${credential.user!.uid}.jpg';
+      final imageUrl = await _uploadUserImage(image, imageName);
 
-    final imageName = '${credential.user!.uid}.jpg';
-    final imageUrl = await _uploadUserImage(image, imageName);
+      await credential.user?.updateDisplayName(name);
+      await credential.user?.updatePhotoURL(imageUrl);
 
-    await credential.user?.updateDisplayName(name);
-    await credential.user?.updatePhotoURL(imageUrl);
+      await login(email, password);
 
-    await _saveChatUser(
-      _toChatUser(
+      _currentUser = _toChatUser(
         credential.user!,
+        name,
         imageUrl,
-      ),
-    );
+      );
+      await _saveChatUser(currentUser!);
+    }
+
+    await signup.delete();
   }
 
   Future<String?> _uploadUserImage(File? image, String imageName) async {
