@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "707921401983",
-    "project_id": "chat-cod3r-7a0ea",
-    "storage_bucket": "chat-cod3r-7a0ea.appspot.com"
+    "project_number": "288204872014",
+    "project_id": "chat-cod3r-71dac",
+    "storage_bucket": "chat-cod3r-71dac.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:707921401983:android:efa47ad0318b9a6fe8874a",
+        "mobilesdk_app_id": "1:288204872014:android:e36df770580e835759a61f",
         "android_client_info": {
           "package_name": "br.com.gugarocha.chat"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDk-sYAkNQalMCgTehQ71Hg1H-lyHlEiT8"
+          "current_key": "AIzaSyBgKT89hw8ePs8ch944Eo6E37NAFtsY7nk"
         }
       ],
       "services": {
